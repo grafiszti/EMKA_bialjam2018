@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://player/player.gd" type="Script" id=1]
 [ext_resource path="res://assets/player.png" type="Texture" id=2]
+[ext_resource path="res://assets/spike.png" type="Texture" id=3]
 
 [sub_resource type="CircleShape2D" id=1]
 
@@ -15,6 +16,9 @@ collision_layer = 1
 collision_mask = 1
 collision/safe_margin = 0.08
 script = ExtResource( 1 )
+WALK_SPEED = 200
+max_spikes = 3
+player_number = "1"
 
 [node name="sprite" type="Sprite" parent="." index="0"]
 
@@ -23,7 +27,12 @@ texture = ExtResource( 2 )
 [node name="shape" type="CollisionShape2D" parent="." index="1"]
 
 shape = SubResource( 1 )
+_sections_unfolded = [ "Visibility" ]
 
-[node name="spikes" type="Node2D" parent="." index="2"]
+[node name="carying_spike" type="Sprite" parent="." index="2"]
+
+position = Vector2( 35, 0 )
+texture = ExtResource( 3 )
+_sections_unfolded = [ "Transform" ]
 
 

@@ -12,8 +12,12 @@ _sections_unfolded = [ "Transform" ]
 position = Vector2( 640, 360 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="player" parent="." index="1" instance=ExtResource( 2 )]
+[node name="player1" parent="." index="1" instance=ExtResource( 2 )]
 
 position = Vector2( 352.487, 325.429 )
+max_spikes = 3
+player_number = "1"
+
+[node name="player_spikes1" type="Node2D" parent="." index="2"]
 
 
