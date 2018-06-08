@@ -1,5 +1,19 @@
-[gd_scene format=2]
+[gd_scene load_steps=3 format=2]
 
-[node name="level" type="Node2D" index="0"]
+[ext_resource path="res://level/frame.tscn" type="PackedScene" id=1]
+[ext_resource path="res://player/player.tscn" type="PackedScene" id=2]
+
+[node name="level" type="Node2D"]
+
+_sections_unfolded = [ "Transform" ]
+
+[node name="frame" parent="." index="0" instance=ExtResource( 1 )]
+
+position = Vector2( 640, 360 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="player" parent="." index="1" instance=ExtResource( 2 )]
+
+position = Vector2( 352.487, 325.429 )
 
 
