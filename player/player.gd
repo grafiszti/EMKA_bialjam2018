@@ -2,6 +2,7 @@ extends KinematicBody2D
 
 var spike = preload("spike.tscn")
 var screen = preload("screen.tscn")
+var beer = preload("beer.tscn")
 
 export var WALK_SPEED = 200
 export var max_spikes = 10
@@ -12,11 +13,13 @@ var velocity = Vector2()
 var player_spikes
 var player_screens
 var carying_spike
+var beers
 
 func _ready():
 	player_spikes = get_node("/root/level/player_spikes" + player_number)
 	player_screens = get_node("/root/level/player_screens" + player_number)
 	carying_spike = get_node("carying_spike")
+	beers = get_node("/root/level/beers")
 	
 func _physics_process(delta):
 	if Input.is_action_pressed("ui_left" + player_number):
@@ -42,8 +45,18 @@ func _physics_process(delta):
 			max_spikes = max_spikes - 1
 			if max_spikes == 0:
 				carying_spike.hide()
+				
+	if Input.is_action_just_pressed("ui_throw_beer1"):
+		beers.add_child(build_beer())
 			
 	move_and_slide(velocity, Vector2(0, -1))
+
+func build_beer():
+	var new_beer = beer.instance()
+	new_beer.position = self.position + Vector2(35, 0)
+	new_beer.apply_impulse(Vector2(), Vector2(1200, 10))
+	new_beer.angular_velocity = 10
+	return new_beer
 
 func build_spike():
 	var new_spike = spike.instance()
@@ -61,5 +74,5 @@ func build_screen():
 	new_screen.position = second_spike.position - delta / 2
 	new_screen.scale = Vector2(delta.length() / new_screen.size.x, 0.2)
 	new_screen.rotation = delta.angle()
-
+	
 	return new_screen
